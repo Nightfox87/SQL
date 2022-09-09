@@ -20,7 +20,7 @@ public class AuthTest {
     }
 
     @AfterAll
-    public static void clearTables(){
+    public static void clearTables() {
         DataHelper.shouldClearDataFromTables();
     }
 
@@ -34,6 +34,7 @@ public class AuthTest {
         var dashboardPage = verificationPage.validVerify(verificationCode);
         dashboardPage.shouldAppearPersonalAccountHeading();
     }
+
     @Test
     void shouldLoginWithSecondAccount() {
         var loginPage = new LoginPage();
@@ -58,9 +59,16 @@ public class AuthTest {
         var loginPage = new LoginPage();
         var user = DataHelper.getIncorrectUserInfo();
         loginPage.validLogin(user);
-        $("[data-test-id='action-login'] span").click();
-        $("[data-test-id='action-login'] span").click();
-        $("[data-test-id='action-login'] span").click();
+        loginPage.shouldAppearErrorNotification();
+        loginPage.shouldCloseErrorNotification();
+        loginPage.shouldClickButton();
+        loginPage.shouldAppearErrorNotification();
+        loginPage.shouldCloseErrorNotification();
+        loginPage.shouldClickButton();
+        loginPage.shouldAppearErrorNotification();
+        loginPage.shouldCloseErrorNotification();
+        loginPage.shouldClickButton();
+        loginPage.shouldAppearErrorNotification();
     }
 
 }

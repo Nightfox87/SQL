@@ -14,6 +14,8 @@ public class LoginPage {
     private SelenideElement loginButton = $("[data-test-id='action-login'] span");
     private SelenideElement errorNotification = $(".notification__content");
 
+    private SelenideElement closeErrorNotificationButton = $(".icon-button__text");
+
     public void validLogin(User info) {
         loginField.setValue(info.getLogin());
         passwordField.setValue(info.getPassword());
@@ -24,7 +26,11 @@ public class LoginPage {
         errorNotification.shouldBe(visible);
     }
 
-    public void clearFields() {
+   public void shouldClickButton() {
+       loginButton.click();
+   }
 
-    }
+   public void shouldCloseErrorNotification() {
+        closeErrorNotificationButton.click();
+   }
 }
